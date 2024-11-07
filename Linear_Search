@@ -1,0 +1,13 @@
+n=int(input())
+S=list(map(int,input().split()))
+q=int(input())
+T=list(map(int,input().split()))
+
+count=0
+S_set=set(S) #Sの要素を異なる要素からなる組み合わせにすることで、検索を高速化する
+
+for i in range(q):
+    if T[i] in S_set:
+        count+=1
+        
+print(count)
