@@ -1,0 +1,19 @@
+n=int(input())
+orders=[]
+dictionary=set()
+for i in range(n):
+    order=input().split()
+    orders.append(order)
+#insertでdictionaryに挿入された文字列に対し、findでそのdictionary内に文字列が見つかれば、yesと出力する
+for order in orders:
+    if order[0]=="insert":
+        word=order[1]
+        dictionary.add(word)
+    elif order[0]=="find":
+        word=order[1]
+        if word in dictionary:
+            print("yes")
+        else:
+            print("no")
+
+    
