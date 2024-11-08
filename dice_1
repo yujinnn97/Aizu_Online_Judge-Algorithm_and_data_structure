@@ -1,0 +1,16 @@
+labels=list(map(int,input().split()))
+set_orders=list(input())
+
+
+for i in range (len(set_orders)):
+    if set_orders[i]=="S": #南にサイコロ移動
+        labels[0],labels[1],labels[-2],labels[-1]=labels[-2],labels[0],labels[-1],labels[1]
+    elif set_orders[i]=="N": #北にサイコロ移動
+        labels[0],labels[1],labels[-2],labels[-1]=labels[1],labels[-1],labels[0],labels[-2]
+    elif set_orders[i]=="E": #東にサイコロ移動
+        labels[0],labels[2],labels[3],labels[-1]=labels[3],labels[0],labels[-1],labels[2]
+    elif set_orders[i]=="W": #西にサイコロ移動
+        labels[0],labels[2],labels[3],labels[-1]=labels[2],labels[-1],labels[0],labels[3]
+#すべての移動を終えた後で、上にきている面の数を出力      
+print(labels[0])
+        
