@@ -1,0 +1,17 @@
+import sys
+data = sys.stdin.read().splitlines()
+A = list(map(int, data[0].split()))
+
+# A[1] が 0 の場合、除算はできない
+if A[1] == 0:
+    print("Error")
+else:
+    # 商の計算を改善する
+    # A[0] と A[1] の符号を考慮して正しい切り下げを行う
+    result = A[0] // A[1]
+
+    # Pythonの負の除算の挙動を修正するため、切り下げの修正
+    if A[0] % A[1] != 0 and (A[0] < 0) != (A[1] < 0):
+        result += 1
+
+    print(result)
