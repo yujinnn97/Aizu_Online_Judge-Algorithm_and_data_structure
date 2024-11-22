@@ -1,0 +1,28 @@
+import sys
+
+data = sys.stdin.read().splitlines()
+
+n = int(data[0])
+A = list(map(int, data[1].split()))
+q = int(data[2])
+m = list(map(int, data[3].split()))
+
+# 再帰的に部分和をチェックする関数
+def can_make_sum(i, target):
+    # targetが0ならば、和を作れるのでTrue
+    if target == 0:
+        return True
+    # iが全ての要素を見た後でtargetが0でないならFalse
+    if i >= n:
+        return False
+    # A[i]を使わない場合、または使う場合のいずれかでtargetを作れるならTrue
+    if can_make_sum(i + 1, target) or can_make_sum(i + 1, target - A[i]):
+        return True
+    return False
+
+# 各mについて結果を判定
+for target in m:
+    if can_make_sum(0, target):
+        print("yes")
+    else:
+        print("no")
