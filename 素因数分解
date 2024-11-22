@@ -1,0 +1,33 @@
+import sys
+
+# 素因数分解を行う関数
+def prime_factorization(n):
+    factors = []
+    # 2で割れる限り割り続ける
+    while n % 2 == 0:
+        factors.append(2)
+        n //= 2
+
+    # 奇数の素数を試す
+    factor = 3
+    while factor * factor <= n:
+        while n % factor == 0:
+            factors.append(factor)
+            n //= factor
+        factor += 2
+
+    # 最後に残った素数があれば追加
+    if n > 1:
+        factors.append(n)
+
+    return factors
+
+# 標準入力から整数nを受け取る
+data = sys.stdin.read().strip()
+n = int(data)
+
+# nを素因数分解して出力
+factors = prime_factorization(n)
+factors_str = " ".join(map(str, factors))
+
+print(f"{n}: {factors_str}")
