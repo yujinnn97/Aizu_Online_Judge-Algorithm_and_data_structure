@@ -1,0 +1,19 @@
+import sys
+data = sys.stdin.read().splitlines()
+n, m = map(int, data[0].split())
+A = list(map(int, data[1].split()))
+
+# dp配列を初期化。最初は非常に大きな値で初期化
+dp = [float('inf')] * (n + 1)
+dp[0] = 0  # 金額0はコイン0枚で達成可能
+
+# 各コインを使ってdp配列を更新
+for coin in A:
+    for j in range(coin, n + 1):
+        dp[j] = min(dp[j], dp[j - coin] + 1)
+
+# 最小コイン枚数を出力。もしdp[n]が初期値のままであれば達成不能
+if dp[n] == float('inf'):
+    print(-1)
+else:
+    print(dp[n])
