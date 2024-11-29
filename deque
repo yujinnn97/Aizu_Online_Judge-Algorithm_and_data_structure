@@ -1,0 +1,43 @@
+#include<iostream>
+#include<cmath>
+#include<deque>
+using namespace std;
+
+int main(){
+    int q;
+    cin>>q;
+    deque<int>A;
+    for(int i=0;i<q;i++){
+        int type,d,x;
+        cin>>type;
+        
+        if(type==0){
+            cin>>d>>x;
+            if(d==0){
+                A.insert(A.begin(),x);
+            }else if(d==1){
+                A.push_back(x);
+            }
+        }else if(type==1){
+            int p;
+            cin>>p;
+            if(p>=0&&p<A.size()){
+                cout<<A[p]<<endl;
+            }else{
+                cout<<"Index out of range"<<endl;
+            }
+        }else if(type==2){
+            cin>>d;
+            if(!A.empty()){
+                if(d==0){
+                    A.erase(A.begin());
+                }else if(d==1){
+                    A.pop_back();
+                }
+            }else{
+                cout<<"Array is empty"<<endl;
+            }
+        }
+    }
+    return 0;
+}
